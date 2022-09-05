@@ -1,6 +1,7 @@
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.date.StopWatch;
 import org.bytedeco.javacpp.BytePointer;
 import org.bytedeco.javacpp.DoublePointer;
 import org.bytedeco.javacpp.IntPointer;
@@ -15,6 +16,7 @@ import org.junit.Test;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import static cn.hutool.core.date.DatePattern.NORM_DATETIME_MS_PATTERN;
 
@@ -41,6 +43,8 @@ public class LibTlePropFunctionTest {
 
     @Test
     public void test_MJD2YMDHMS() {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start("mjd2Date");
 //        double mjd = 54783.5311443393;
         double mjd =  59943.98332202528;
         try (
@@ -52,6 +56,8 @@ public class LibTlePropFunctionTest {
                 DoublePointer se = new DoublePointer(8)
         ) {
             libtleprop.MJD2YMDHMS(mjd, yr, mo, dy, hr, mi, se);
+            stopWatch.stop();
+            System.out.println(stopWatch.prettyPrint(TimeUnit.MILLISECONDS));
             System.out.println(
                     "call YMDHMS2MJD with params " + mjd +
                             " result is " +
@@ -214,7 +220,7 @@ public class LibTlePropFunctionTest {
     @Test
     public void test_date2mjd(){
         DateTime dateTime =DateUtil.parse("2022-08-30 23:35:59.023");
-        double mjd = LibTlePropUtil.date2mjd(dateTime);
+        double mjd = LibTlePropUtil.date2mjd(new org.joda.time.DateTime(dateTime));
         System.out.println(mjd);
     }
 

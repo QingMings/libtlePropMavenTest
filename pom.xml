@@ -67,6 +67,13 @@
                 <systemPath>${main.basedir}/lib/libtleprop-1.0-1.5.7-windows-x86_64.jar</systemPath>
             </dependency>
             <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>2.11.1</version>
+                <scope>system</scope>
+                <systemPath>${main.basedir}/lib/joda-time-2.11.1.jar</systemPath>
+            </dependency>
+            <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>5.8.5</version>
