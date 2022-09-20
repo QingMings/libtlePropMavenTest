@@ -43,7 +43,7 @@ public class LibTlePropUtil {
 //            cal.set(Calendar.MINUTE,  mi.get());
 //            cal.set(Calendar.SECOND, seconds);
 //            cal.set(Calendar.MILLISECOND,milliseconds);
-
+//        System.out.println(hr.get());
         return new org.joda.time.DateTime(yr.get(), mo.get(), dy.get(), hr.get(), mi.get(), seconds, milliseconds).toDate();
 
     }

@@ -1,10 +1,13 @@
 package org.bytedeco.libtleprop;
 
+import cn.hutool.core.date.StopWatch;
 import org.bytedeco.javacpp.BytePointer;
 import org.bytedeco.javacpp.DoublePointer;
 import org.bytedeco.javacpp.IntPointer;
 import org.bytedeco.javacpp.Loader;
 import org.bytedeco.libtleprop.global.libtleprop;
+
+import java.util.concurrent.TimeUnit;
 
 public class Main2 {
     static {
@@ -14,6 +17,8 @@ public class Main2 {
     public static final double TO_JUTC1 = 2400000.5d;
 
     public static void main(String[] args) {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
         double mjd = libtleprop.YMDHMS2MJD(2022, 8, 30, 23, 35, 59.023);
         String line1 = "1 00005U 58002B   22194.90455603  .00000355  00000-0  44510-3 0  9990";
         String line2 = "2 00005  34.2486  57.8961 1847235 156.6009 213.0824 10.84976421287411";
@@ -84,7 +89,10 @@ public class Main2 {
         for (int i = 0; i < 54; i++) {
             System.out.println(sateph_array_t.get(i));
         }
-}
+        stopWatch.stop();
+        System.out.println(stopWatch.prettyPrint(TimeUnit.MILLISECONDS));
+
+    }
 
     private static double mjd2JUTC1(double mjd) {
         return mjd + TO_JUTC1;

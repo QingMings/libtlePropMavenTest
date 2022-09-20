@@ -60,8 +60,11 @@ public class AuroraCesiumTest {
         stopWatch.start("date2mjd");
         double mjd = libtleprop.YMDHMS2MJD(2022, 8, 30, 23, 35, 59.023);
         stopWatch.stop();
-        String line1 = "1 00005U 58002B   22194.90455603  .00000355  00000-0  44510-3 0  9990";
-        String line2 = "2 00005  34.2486  57.8961 1847235 156.6009 213.0824 10.84976421287411";
+//        String line1 = "1 00005U 58002B   22194.90455603  .00000355  00000-0  44510-3 0  9990";
+//        String line2 = "2 00005  34.2486  57.8961 1847235 156.6009 213.0824 10.84976421287411";
+        String line1 = "1 00674U 63039A   22195.34286118 -.00000075  00000-0  00000-0 0  9993";
+        String line2 = "2 00674  42.1316 133.4120 2318689 106.3755   0.2408  0.22194242  6190";
+
         BytePointer line1P = new BytePointer(line1.getBytes().length);
         BytePointer line2P = new BytePointer(line2.getBytes().length);
         line1P.put(line1.getBytes());
@@ -135,15 +138,16 @@ public class AuroraCesiumTest {
     }
 
     @Test
-    public void testNewJodaTime(){
+    public void testNewJodaTime() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("new joda DateTime");
         DateTime dateTime = DateTime.now();
         stopWatch.stop();
         System.out.println(stopWatch.prettyPrint(TimeUnit.MILLISECONDS));
     }
+
     @Test
-    public void testNewJodaLocalDateTime(){
+    public void testNewJodaLocalDateTime() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("new joda LocalDateTime");
         for (int i = 0; i < 50; i++) {
@@ -153,16 +157,18 @@ public class AuroraCesiumTest {
         stopWatch.stop();
         System.out.println(stopWatch.prettyPrint(TimeUnit.MILLISECONDS));
     }
+
     @Test
-    public void testNewUtilDate(){
+    public void testNewUtilDate() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("new java util date");
-        Date date =new Date();
+        Date date = new Date();
         stopWatch.stop();
         System.out.println(stopWatch.prettyPrint(TimeUnit.MILLISECONDS));
     }
+
     @Test
-    public void testCalenderInstance(){
+    public void testCalenderInstance() {
         StopWatch stopWatch = new StopWatch();
         stopWatch.start("get Calender Instance");
         Calendar.getInstance();
@@ -237,3 +243,6 @@ public class AuroraCesiumTest {
                         .build()).build();
     }
 }
+
+
+
